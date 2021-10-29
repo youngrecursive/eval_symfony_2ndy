@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Single Ville{% endblock %}
+
+{% block body %}
+    <a href="{{ path('ville') }}" class="btn btn-primary mb-3">Voir toutes les villes</a>
+    <h1>{{ ville.nom }}</h1>
+
+    <div class="card-group mb-5">
+        {% set restaurants = ville.restaurant %}
+        {% for restaurant in restaurants %}
+        <div class="card">
+            <img class="card-img-top" src="{{ restaurant.image }}">
+            <div class="card-body">
+                <h5 class="card-title">{{ restaurant.nom }}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">{{ restaurant.adresse }}</h6>
+                {% set proprietaire = restaurant.proprietaire %}
+                <p class="card-text">Propriétaire : <a href="{{ path('single_proprietaire', {'nom' : proprietaire.nom}) }}">{{ proprietaire.prenom }} {{ proprietaire.nom }}</a> né(e) le {{ proprietaire.dateNaissance|date("d/m/Y") }}</p>
+                <a href="{{ path('single_restaurant', {'nom' : restaurant.nom}) }}" class="btn btn-primary">Voir le restaurant</a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+{% endblock %}

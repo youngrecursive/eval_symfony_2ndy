@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Single Restaurant{% endblock %}
+
+{% block body %}
+
+
+    <a href="{{ path('single_ville', {'nom' : proprietaire.restaurant.ville.nom}) }}" class="btn btn-primary mb-3">Voir sa ville</a>
+  
+    <div class="card">
+        <div class="card-body">
+            <p class="card-text">Propriétaire : <a href="{{ path('single_proprietaire', {'nom' : proprietaire.nom}) }}">{{ proprietaire.prenom }} {{ proprietaire.nom }}</a> né(e) le {{ proprietaire.dateNaissance|date("d/m/Y") }}</p>
+            <a href="{{ path('single_restaurant', {'nom' : proprietaire.restaurant.nom}) }}" class="btn btn-primary">Voir son restaurant</a>
+        </div>
+    </div>
+ 
+
+{% endblock %}
